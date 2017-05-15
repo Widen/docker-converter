@@ -15,7 +15,7 @@ RUN apt-get update && \
       tar -xz -C /tmp/exiftool --strip-components=1 && \
   cd /tmp/exiftool && perl Makefile.PL && make test && make install && \
   mkdir -p /tmp/ghostscript && curl --silent --location --retry 3 \
-    http://downloads.ghostscript.com/public/old-gs-releases/ghostscript-${GS_VERSION}.tar.gz | \
+    https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs921/ghostscript-${GS_VERSION}.tar.gz | \
       tar -xz -C /tmp/ghostscript --strip-components=1 && \
   cd /tmp/ghostscript && ./configure && make && make install && cd && \
   rm -rf /tmp/* && \
