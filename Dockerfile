@@ -8,6 +8,9 @@ ENV EXIFTOOL_VERSION ${EXIFTOOL_VERSION}
 ARG GS_VERSION
 ENV GS_VERSION ${GS_VERSION}
 
+ARG GS_VERSION_NUM_ONLY
+ENV GS_VERSION_NUM_ONLY ${GS_VERSION_NUM_ONLY}
+
 RUN apt-get update && \
   apt-get -y --no-install-recommends install ${BUILD_DEPS} perl imagemagick && \
   mkdir -p /tmp/exiftool && curl --silent --location --retry 3 \
@@ -15,7 +18,7 @@ RUN apt-get update && \
       tar -xz -C /tmp/exiftool --strip-components=1 && \
   cd /tmp/exiftool && perl Makefile.PL && make test && make install && \
   mkdir -p /tmp/ghostscript && curl --silent --location --retry 3 \
-    https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs921/ghostscript-${GS_VERSION}.tar.gz | \
+    https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${GS_VERSION_NUM_ONLY}/ghostscript-${GS_VERSION}.tar.gz | \
       tar -xz -C /tmp/ghostscript --strip-components=1 && \
   cd /tmp/ghostscript && ./configure && make && make install && cd && \
   rm -rf /tmp/* && \
