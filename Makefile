@@ -2,8 +2,8 @@ all: push
 .phony: build tag push clean
 
 EXIFTOOL_VERSION = 9.88
-GS_VERSION = 9.20
-GS_VERSION_NUM_ONLY = 920
+GS_VERSION = 9.22
+GS_VERSION_NUM_ONLY = $(subst .,,$(GS_VERSION))
 
 VERSION = $(shell git rev-parse --abbrev-ref HEAD)
 BUILD_DATE = $(shell date +"%Y%m%d")
